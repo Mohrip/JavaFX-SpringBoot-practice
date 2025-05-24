@@ -1,0 +1,34 @@
+plugins {
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java' 
+}
+
+group = 'com.JavaFxAPPS'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':backend')
+    implementation 'org.openjfx:javafx-controls:17'
+    implementation 'org.openjfx:javafx-fxml:17'
+}
+
+javafx {
+    version = '17'
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+springBoot {
+    mainClass = 'com.JavaFxAPPS.JavaFxApplication' // Replace with your actual main class
+}
