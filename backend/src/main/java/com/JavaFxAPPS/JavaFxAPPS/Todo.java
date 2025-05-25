@@ -6,7 +6,6 @@ public class Todo {
     private boolean completed;
 
 
-    // Here I want to implement getters, and setters
     public Long getId() {
         return id;
     }

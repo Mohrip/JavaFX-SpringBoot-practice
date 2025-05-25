@@ -10,21 +10,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
-import java.time.Instant;
 
 @Component
 public class TimeCounterUI extends VBox{
     private final Label label = new Label("Set your timer");
     private AnimationTimer timer;
     private long remainingMs = 0;
-  //  private final Instant start = Instant.now();
 
     public TimeCounterUI() {
         setSpacing(10);
         setPadding(new Insets(10));
         label.setStyle("-fx-font-size: 20px;");
-        //getChildren().addAll(new Label("Time Counter"), label);
 
         Label durationTitle = new Label("Set Duration:");
         durationTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
@@ -53,24 +49,13 @@ public class TimeCounterUI extends VBox{
                 hoursBox, minutesBox, secondsBox, millisBox
         );
 
-//        HBox inputs = new HBox(10,
-//                new Label("Years:"), yearsField,
-//                new Label("Months:"), monthsField,
-//                new Label("Weeks:"), weeksField,
-//                new Label("Days:"), daysField,
-//                new Label("Hours:"), hoursField,
-//                new Label("Minutes:"), minutesField,
-//                new Label("Seconds:"), secondsField,
-//                new Label("Milliseconds:"), millisecondsField);
 
-      //  inputs.setWrapText(true);
         Label controlsTitle = new Label("Controls");
         controlsTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
 
 
         Button startBtn = new Button("Start Countdown");
         startBtn.setOnAction(e -> {
-            // Parse all fields, default to 0 if invalid
             long years = parseLong(yearsField.getText());
             long months = parseLong(monthsField.getText());
             long weeks = parseLong(weeksField.getText());
@@ -86,8 +71,8 @@ public class TimeCounterUI extends VBox{
                     + hours * 3_600_000
                     + days * 86_400_000
                     + weeks * 604_800_000
-                    + months * 2_592_000_000L // 30 days per month
-                    + years * 31_536_000_000L; // 365 days per year
+                    + months * 2_592_000_000L
+                    + years * 31_536_000_000L;
 
             if (timer != null) timer.stop();
             if (remainingMs > 0) {
@@ -130,7 +115,6 @@ public class TimeCounterUI extends VBox{
 
 
 
-      //  getChildren().addAll(new Label("Countdown Timer"), inputs, startBtn, stopBtn, label);
     }
 
     private long parseLong(String s) {
@@ -156,32 +140,3 @@ public class TimeCounterUI extends VBox{
                 years, months, weeks, days, hours, minutes, seconds, ms);
     }
 }
-
-//        AnimationTimer timer = new AnimationTimer() {
-//            @Override
-//            public void handle(long now) {
-//                Duration duration = Duration.between(start, Instant.now());
-//                long ms = duration.toMillis();
-//                long years = ms / (1000L * 60 * 60 * 24 * 365);
-//                ms %= (1000L * 60 * 60 * 24 * 365);
-//                long months = ms / (1000L * 60 * 60 * 24 * 30);
-//                ms %= (1000L * 60 * 60 * 24 * 30);
-//                long weeks = ms / (1000L * 60 * 60 * 24 * 7);
-//                ms %= (1000L * 60 * 60 * 24 * 7);
-//                long days = ms / (1000L * 60 * 60 * 24);
-//                ms %= (1000L * 60 * 60 * 24);
-//                long hours = ms / (1000L * 60 * 60);
-//                ms %= (1000L * 60 * 60);
-//                long minutes = ms / (1000L * 60);
-//                ms %= (1000L * 60);
-//                long seconds = ms / 1000;
-//                ms %= 1000;
-//                label.setText(String.format("Time since start: %d years, %d months, %d weeks, %d days, %02d:%02d:%02d.%03d",
-//                        years, months, weeks, days, hours, minutes, seconds, ms));
-//
-//
-//            }
-//        };
-//        timer.start();
-//    }
-//}
