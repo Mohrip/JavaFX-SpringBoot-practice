@@ -3,6 +3,7 @@ HELP.md
 gradle/wrapper/
 build.gradle
 gradlew
+build/
 gradlew.bat
 settings.gradle
 backend/build/
