@@ -1,9 +1,6 @@
 package com.JavaFxAPPS;
 
-
 import com.JavaFxAPPS.ui.CalculatorUI;
-import com.JavaFxAPPS.JavaFxAPPS.CalculatorUI;
-import com.JavaFxAPPS.JavaFxAPPS.CalculatorService;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
