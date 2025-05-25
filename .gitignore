@@ -1,5 +1,10 @@
 HELP.md
 .gradle
+gradle/wrapper/
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
 backend/build/
  .vscode/
   .idea/
