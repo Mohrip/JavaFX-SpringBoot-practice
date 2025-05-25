@@ -1,8 +1,11 @@
 package com.JavaFxAPPS;
 
 import com.JavaFxAPPS.ui.CalculatorUI;
+import com.JavaFxAPPS.ui.TodoUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,10 +23,22 @@ public class JavaFxApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         CalculatorUI calculatorUI = springContext.getBean(CalculatorUI.class);
-        Scene scene = new Scene(calculatorUI.createContent(), 300, 400);
-        primaryStage.setTitle("Calculator");
+        TodoUI todoUI = springContext.getBean(TodoUI.class);
+
+        Button calcBtn = new Button("Calculator");
+        Button todoBtn = new Button("Todo List");
+        VBox root = new VBox(10, calcBtn, todoBtn);
+        Scene scene = new Scene(root, 300, 400);
+        calcBtn.setOnAction(e -> root.getChildren().setAll(calcBtn, todoBtn, calculatorUI.createContent()));
+        todoBtn.setOnAction(e -> root.getChildren().setAll(calcBtn, todoBtn, todoUI));
+        primaryStage.setTitle("JavaFX Spring App");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+//        Scene scene = new Scene(calculatorUI.createContent(), 300, 400);
+//        primaryStage.setTitle("Calculator");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
     }
 
     @Override

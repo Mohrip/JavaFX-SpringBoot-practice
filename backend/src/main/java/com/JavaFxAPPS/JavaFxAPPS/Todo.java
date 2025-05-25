@@ -1,0 +1,29 @@
+package com.JavaFxAPPS.JavaFxAPPS;
+
+public class Todo {
+    private  Long id;
+    private String text;
+    private boolean completed;
+
+
+    // Here I want to implement getters, and setters
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getText() {
+        return text;
+    }
+    public void setText(String text) {
+        this.text = text;
+    }
+    public boolean isCompleted() {
+        return completed;
+    }
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+}
