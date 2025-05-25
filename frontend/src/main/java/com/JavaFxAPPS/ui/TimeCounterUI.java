@@ -30,24 +30,38 @@ public class TimeCounterUI extends VBox{
         durationTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
 
 
-        TextField yearsField = new TextField("0");
-        TextField monthsField = new TextField("0");
-        TextField weeksField = new TextField("0");
-        TextField daysField = new TextField("0");
-        TextField hoursField = new TextField("0");
-        TextField minutesField = new TextField("0");
-        TextField secondsField = new TextField("0");
-        TextField millisecondsField = new TextField("0");
+        TextField yearsField = new TextField("");
+        TextField monthsField = new TextField("");
+        TextField weeksField = new TextField("");
+        TextField daysField = new TextField("");
+        TextField hoursField = new TextField("");
+        TextField minutesField = new TextField("");
+        TextField secondsField = new TextField("");
+        TextField millisecondsField = new TextField("");
+
+        VBox yearsBox = new VBox(new Label("Years"), yearsField);
+        VBox monthsBox = new VBox(new Label("Months"), monthsField);
+        VBox weeksBox = new VBox(new Label("Weeks"), weeksField);
+        VBox daysBox = new VBox(new Label("Days"), daysField);
+        VBox hoursBox = new VBox(new Label("Hours"), hoursField);
+        VBox minutesBox = new VBox(new Label("Minutes"), minutesField);
+        VBox secondsBox = new VBox(new Label("Seconds"), secondsField);
+        VBox millisBox = new VBox(new Label("Milliseconds"), millisecondsField);
 
         HBox inputs = new HBox(10,
-                new Label("Years:"), yearsField,
-                new Label("Months:"), monthsField,
-                new Label("Weeks:"), weeksField,
-                new Label("Days:"), daysField,
-                new Label("Hours:"), hoursField,
-                new Label("Minutes:"), minutesField,
-                new Label("Seconds:"), secondsField,
-                new Label("Milliseconds:"), millisecondsField);
+                yearsBox, monthsBox, weeksBox, daysBox,
+                hoursBox, minutesBox, secondsBox, millisBox
+        );
+
+//        HBox inputs = new HBox(10,
+//                new Label("Years:"), yearsField,
+//                new Label("Months:"), monthsField,
+//                new Label("Weeks:"), weeksField,
+//                new Label("Days:"), daysField,
+//                new Label("Hours:"), hoursField,
+//                new Label("Minutes:"), minutesField,
+//                new Label("Seconds:"), secondsField,
+//                new Label("Milliseconds:"), millisecondsField);
 
       //  inputs.setWrapText(true);
         Label controlsTitle = new Label("Controls");
