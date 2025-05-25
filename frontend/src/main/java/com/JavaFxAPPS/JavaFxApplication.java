@@ -1,5 +1,6 @@
 package com.JavaFxAPPS;
 
+import com.JavaFxAPPS.ui.TimeCounterUI;
 import com.JavaFxAPPS.ui.CalculatorUI;
 import com.JavaFxAPPS.ui.TodoUI;
 import javafx.application.Application;
@@ -24,13 +25,16 @@ public class JavaFxApplication extends Application {
     public void start(Stage primaryStage) {
         CalculatorUI calculatorUI = springContext.getBean(CalculatorUI.class);
         TodoUI todoUI = springContext.getBean(TodoUI.class);
+        TimeCounterUI timeCounterUI = springContext.getBean(TimeCounterUI.class);
 
         Button calcBtn = new Button("Calculator");
         Button todoBtn = new Button("Todo List");
-        VBox root = new VBox(10, calcBtn, todoBtn);
+        Button timeBtn = new Button("Time Counter");
+        VBox root = new VBox(10, calcBtn, todoBtn, timeBtn);
         Scene scene = new Scene(root, 300, 400);
-        calcBtn.setOnAction(e -> root.getChildren().setAll(calcBtn, todoBtn, calculatorUI.createContent()));
-        todoBtn.setOnAction(e -> root.getChildren().setAll(calcBtn, todoBtn, todoUI));
+        calcBtn.setOnAction(e -> root.getChildren().setAll(calcBtn, todoBtn, timeBtn, calculatorUI.createContent()));
+        todoBtn.setOnAction(e -> root.getChildren().setAll(calcBtn, todoBtn, timeBtn, todoUI));
+        timeBtn.setOnAction(e -> root.getChildren().setAll(calcBtn, todoBtn, timeBtn, timeCounterUI));
         primaryStage.setTitle("JavaFX Spring App");
         primaryStage.setScene(scene);
         primaryStage.show();
