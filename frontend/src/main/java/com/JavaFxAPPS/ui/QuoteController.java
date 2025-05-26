@@ -30,14 +30,12 @@ public class QuoteController {
 
     @FXML
     public void onGetQuote() {
-        // Multithreading: fetch quote in background
         new Thread(() -> {
             String newQuote = quoteService.getRandomQuote();
             Platform.runLater(() -> quote.set(newQuote));
         }).start();
     }
 
-    // In QuoteController.java
     private Runnable showHomeCallback;
 
     public void setShowHomeCallback(Runnable callback) {

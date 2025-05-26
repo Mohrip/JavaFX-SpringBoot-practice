@@ -5,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.*;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;
@@ -98,7 +97,6 @@ public class TimeCounterUI extends VBox{
             }
         });
         Button backButton = new Button("Back");
-       // backButton.setMinSize(215, 50);
         backButton.setOnAction(e -> {
             if (showHomeCallback != null) {
                 showHomeCallback.run();
