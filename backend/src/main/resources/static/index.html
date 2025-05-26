@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List (Vuetify)</title>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.5.11/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.5.11/dist/vuetify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.5.11/dist/vuetify-labs-components.umd.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    const { createApp, ref, onMounted } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const App = {
+      setup() {
+        const todos = ref([]);
+        const loading = ref(false);
+        const newTodo = ref('');
+
+        const fetchTodos = async () => {
+          loading.value = true;
+          try {
+            const res = await fetch('http://localhost:8080/api/todo');
+            todos.value = await res.json();
+          } catch (e) {
+            todos.value = [];
+          }
+          loading.value = false;
+        };
+
+        const addTodo = async () => {
+          if (!newTodo.value.trim()) return;
+          loading.value = true;
+          try {
+            await fetch('http://localhost:8080/api/todo', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ text: newTodo.value, completed: false })
+            });
+            newTodo.value = '';
+            await fetchTodos();
+          } catch (e) {}
+          loading.value = false;
+        };
+
+        onMounted(fetchTodos);
+
+        return { todos, loading, fetchTodos, newTodo, addTodo };
+      },
+      template: `
+        <v-app>
+          <v-main>
+            <v-container>
+              <v-card class="mx-auto" max-width="400">
+                <v-card-title>Todo List</v-card-title>
+                <v-card-text>
+                  <v-row>
+                    <v-col cols="9">
+                      <v-text-field
+                        v-model="newTodo"
+                        label="New todo"
+                        dense
+                        hide-details
+                        @keyup.enter="addTodo"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="3">
+                      <v-btn color="primary" @click="addTodo" style="height:40px;width:40px;">+</v-btn>
+                    </v-col>
+                  </v-row>
+                  <v-list>
+                    <v-list-item v-for="todo in todos" :key="todo.id">
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          <span :style="{textDecoration: todo.completed ? 'line-through' : 'none'}">
+                            {{ todo.text }}
+                          </span>
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list>
+                  <v-progress-circular v-if="loading" indeterminate color="primary"></v-progress-circular>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn @click="fetchTodos" color="secondary">Fetch All</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-container>
+          </v-main>
+        </v-app>
+      `
+    };
+
+    const vuetify = createVuetify();
+    createApp(App).use(vuetify).mount('#app');
+</script>
+</body>
+</html>
