@@ -63,6 +63,7 @@ public class JavaFxApplication extends Application {
         todoUI.setShowHomeCallback(() -> showHome((root)));
         calculatorUI.setShowHomeCallback(() -> showHome((root)));
         hardwareUsageUI.setShowHomeCallback(() -> showHome((root)));
+        timeCounterUI.setShowHomeCallback(() -> showHome((root)));
 
 
 

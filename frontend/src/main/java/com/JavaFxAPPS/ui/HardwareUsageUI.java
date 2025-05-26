@@ -26,7 +26,7 @@ public class HardwareUsageUI extends VBox {
         setAlignment(Pos.CENTER);
 
         Button backButton = new Button("Back");
-        backButton.setMinSize(215, 50);
+     //   backButton.setMinSize(215, 50);
         backButton.setOnAction(e -> {
             if (showHomeCallback != null) {
                 showHomeCallback.run();

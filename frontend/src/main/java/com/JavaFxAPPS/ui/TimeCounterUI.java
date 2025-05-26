@@ -17,6 +17,9 @@ public class TimeCounterUI extends VBox{
     private AnimationTimer timer;
     private long remainingMs = 0;
 
+    private Runnable showHomeCallback;
+
+
     public TimeCounterUI() {
         setSpacing(10);
         setPadding(new Insets(10));
@@ -94,6 +97,13 @@ public class TimeCounterUI extends VBox{
                 label.setText("Please enter a positive duration.");
             }
         });
+        Button backButton = new Button("Back");
+       // backButton.setMinSize(215, 50);
+        backButton.setOnAction(e -> {
+            if (showHomeCallback != null) {
+                showHomeCallback.run();
+            }
+        });
 
         Button stopBtn = new Button("Stop Countdown");
         stopBtn.setOnAction(e -> {
@@ -105,7 +115,7 @@ public class TimeCounterUI extends VBox{
         }
         );
 
-        HBox controls = new HBox(10, startBtn, stopBtn);
+        HBox controls = new HBox(10, startBtn, stopBtn, backButton);
         getChildren().addAll(
                 new Label("Countdown Timer"),
                 durationTitle, inputs,
@@ -138,5 +148,9 @@ public class TimeCounterUI extends VBox{
         ms %= 1000L;
         return String.format("Time left: %d years, %d months, %d weeks, %d days, %02d:%02d:%02d.%03d",
                 years, months, weeks, days, hours, minutes, seconds, ms);
+    }
+
+    public void setShowHomeCallback(Runnable showHomeCallback) {
+        this.showHomeCallback = showHomeCallback;
     }
 }
