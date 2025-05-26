@@ -19,6 +19,9 @@ public class CalculatorUI {
     private String operator = "";
     private double firstNumber = 0;
 
+
+    private Runnable showHomeCallback;
+
     public CalculatorUI(CalculatorService calculatorService) {
         this.calculatorService = calculatorService;
     }
@@ -28,6 +31,8 @@ public class CalculatorUI {
         root.setPadding(new Insets(10));
         root.setAlignment(Pos.CENTER);
 
+
+
         display = new TextField();
         display.setEditable(false);
         display.setStyle("-fx-font-size: 20px;");
@@ -35,9 +40,19 @@ public class CalculatorUI {
         GridPane buttonGrid = createButtonGrid();
         Button clearButton = createClearButton();
 
-        root.getChildren().addAll(display, buttonGrid, clearButton);
+
+        Button backButton = new Button("Back");
+        backButton.setMinSize(215, 50);
+        backButton.setOnAction(e -> {
+            if (showHomeCallback != null) {
+                showHomeCallback.run();
+            }
+            });
+
+        root.getChildren().addAll(display, buttonGrid, clearButton, backButton);
         return root;
     }
+
 
     private GridPane createButtonGrid() {
         GridPane buttonGrid = new GridPane();
@@ -115,10 +130,18 @@ public class CalculatorUI {
         }
     }
 
+
+
     private void clear() {
         currentNumber = "";
         operator = "";
         firstNumber = 0;
         display.clear();
     }
+
+    public void setShowHomeCallback(Runnable showHomeCallback) {
+        this.showHomeCallback = showHomeCallback;
+    }
+
+
 }

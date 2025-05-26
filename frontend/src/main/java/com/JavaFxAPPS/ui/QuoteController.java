@@ -37,4 +37,18 @@ public class QuoteController {
         }).start();
     }
 
+    // In QuoteController.java
+    private Runnable showHomeCallback;
+
+    public void setShowHomeCallback(Runnable callback) {
+        this.showHomeCallback = callback;
+    }
+
+    @FXML
+    public void onBack() {
+        if (showHomeCallback != null) {
+            showHomeCallback.run();
+        }
+    }
+
 }

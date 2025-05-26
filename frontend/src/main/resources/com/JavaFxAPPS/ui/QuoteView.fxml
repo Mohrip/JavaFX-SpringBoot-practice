@@ -6,5 +6,6 @@
       fx:controller="com.JavaFxAPPS.ui.QuoteController">
     <Label fx:id="quoteLabel" text="Click to get a quote!" style="-fx-font-size: 16px;"/>
     <Button text="Get Random Quote" onAction="#onGetQuote"/>
+    <Button text="Back" onAction="#onBack"/>
 </VBox>
 

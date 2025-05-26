@@ -25,6 +25,7 @@ public class QuoteService {
             "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
             "The way to get started is to quit talking and begin doing."
     );
+
     private final Random random = new Random();
 
     public String getRandomQuote() {

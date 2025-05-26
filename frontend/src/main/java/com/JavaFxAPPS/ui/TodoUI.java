@@ -13,6 +13,9 @@ public class TodoUI extends VBox{
     private final TreeItem<String> rootItem = new TreeItem<>("");
     private final TreeView<String> treeView = new TreeView<>(rootItem);
 
+    private Runnable showHomeCallback;
+
+
     public TodoUI() {
         setSpacing(10);
         setPadding(new Insets(10));
@@ -50,10 +53,22 @@ public class TodoUI extends VBox{
             }
         });
 
+        Button backButton = new Button("Back");
+        backButton.setOnAction(e -> {
+            if (showHomeCallback != null) {
+                showHomeCallback.run();
+            }
+        });
 
-        HBox controls = new HBox(10, input, addButton, deleteButton);
+
+
+        HBox controls = new HBox(10, input, addButton, deleteButton, backButton);
         getChildren().addAll(new Label("Todo List"), treeView, controls);
         rootItem.setExpanded(true);
         }
+
+    public void setShowHomeCallback(Runnable showHomeCallback) {
+        this.showHomeCallback = showHomeCallback;
+    }
     }
 
