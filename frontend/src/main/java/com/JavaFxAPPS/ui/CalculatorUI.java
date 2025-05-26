@@ -42,7 +42,6 @@ public class CalculatorUI {
 
 
         Button backButton = new Button("Back");
-        backButton.setMinSize(215, 50);
         backButton.setOnAction(e -> {
             if (showHomeCallback != null) {
                 showHomeCallback.run();
