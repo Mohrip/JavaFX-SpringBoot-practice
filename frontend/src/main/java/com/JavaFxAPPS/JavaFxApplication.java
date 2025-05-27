@@ -105,6 +105,7 @@ import com.JavaFxAPPS.ui.TodoUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
@@ -141,7 +142,11 @@ public class JavaFxApplication extends Application {
         );
         comboBox.setPromptText("Select Feature");
 
-        VBox root = new VBox(10, comboBox);
+        VBox root = new VBox(10);
+        Label homeLabel = new Label("Welcome! Please select a feature:");
+        root.getChildren().addAll(homeLabel, comboBox);
+
+
 
         final Parent[] quoteRoot = new Parent[1];
         try {
@@ -149,18 +154,21 @@ public class JavaFxApplication extends Application {
             loader.setControllerFactory(springContext::getBean);
             quoteRoot[0] = loader.load();
             QuoteController controller = loader.getController();
-            controller.setShowHomeCallback(() -> showHome(root, comboBox));
+            controller.setShowHomeCallback(() -> showHome(root, comboBox, homeLabel));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        todoUI.setShowHomeCallback(() -> showHome(root, comboBox));
-        calculatorUI.setShowHomeCallback(() -> showHome(root, comboBox));
-        hardwareUsageUI.setShowHomeCallback(() -> showHome(root, comboBox));
-        timeCounterUI.setShowHomeCallback(() -> showHome(root, comboBox));
+        todoUI.setShowHomeCallback(() -> showHome(root, comboBox, homeLabel));
+        calculatorUI.setShowHomeCallback(() -> showHome(root, comboBox, homeLabel));
+        hardwareUsageUI.setShowHomeCallback(() -> showHome(root, comboBox, homeLabel));
+        timeCounterUI.setShowHomeCallback(() -> showHome(root, comboBox, homeLabel));
 
         comboBox.setOnAction(e -> {
             String selected = comboBox.getValue();
+            if (selected == null) {
+                return;
+            }
             switch (selected) {
                 case "Calculator" -> root.getChildren().setAll(comboBox, calculatorUI.createContent());
                 case "Todo List" -> root.getChildren().setAll(comboBox, todoUI);
@@ -180,8 +188,8 @@ public class JavaFxApplication extends Application {
         primaryStage.show();
     }
 
-    public void showHome(VBox root, ComboBox<String> comboBox) {
-        root.getChildren().setAll(comboBox);
+    public void showHome(VBox root, ComboBox<String> comboBox, Label homeLabel) {
+        root.getChildren().setAll(homeLabel, comboBox);
         comboBox.getSelectionModel().clearSelection();
     }
 
