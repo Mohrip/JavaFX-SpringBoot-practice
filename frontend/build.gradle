@@ -23,6 +23,7 @@ dependencies {
     implementation 'org.openjfx:javafx-controls:17'
     implementation 'org.openjfx:javafx-fxml:17'
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'io.github.palexdev:materialfx:11.16.1'
 }
 
 javafx {

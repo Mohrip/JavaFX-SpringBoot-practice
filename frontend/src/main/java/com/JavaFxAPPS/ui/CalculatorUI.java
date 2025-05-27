@@ -9,12 +9,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+
 
 @Component
 public class CalculatorUI {
 
     private final CalculatorService calculatorService;
-    private TextField display;
+    private MFXTextField display;
     private String currentNumber = "";
     private String operator = "";
     private double firstNumber = 0;
@@ -33,15 +36,15 @@ public class CalculatorUI {
 
 
 
-        display = new TextField();
+        display = new MFXTextField();
         display.setEditable(false);
         display.setStyle("-fx-font-size: 20px;");
 
         GridPane buttonGrid = createButtonGrid();
-        Button clearButton = createClearButton();
+        MFXButton clearButton = createClearButton();
 
 
-        Button backButton = new Button("Back");
+        MFXButton backButton = new MFXButton("Back");
         backButton.setOnAction(e -> {
             if (showHomeCallback != null) {
                 showHomeCallback.run();
@@ -67,7 +70,7 @@ public class CalculatorUI {
 
         for (int i = 0; i < buttonLabels.length; i++) {
             for (int j = 0; j < buttonLabels[i].length; j++) {
-                Button button = new Button(buttonLabels[i][j]);
+                MFXButton button = new MFXButton(buttonLabels[i][j]);
                 button.setMinSize(50, 50);
                 button.setOnAction(e -> handleButton(button.getText()));
                 buttonGrid.add(button, j, i);
@@ -76,8 +79,8 @@ public class CalculatorUI {
         return buttonGrid;
     }
 
-    private Button createClearButton() {
-        Button clearButton = new Button("C");
+    private MFXButton createClearButton() {
+        MFXButton clearButton = new MFXButton("C");
         clearButton.setMinSize(215, 50);
         clearButton.setOnAction(e -> clear());
         return clearButton;

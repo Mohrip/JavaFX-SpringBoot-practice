@@ -115,6 +115,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import java.io.IOException;
 import com.JavaFxAPPS.ui.QuoteController;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+
+
 
 @SpringBootApplication
 public class JavaFxApplication extends Application {
@@ -183,6 +188,11 @@ public class JavaFxApplication extends Application {
         });
 
         Scene scene = new Scene(root, 350, 450);
+
+        scene.getStylesheets().add("io/github/palexdev/materialfx/css/mfx-base.css");
+        scene.getStylesheets().add("io/github/palexdev/materialfx/css/mfx-purple.css");
+
+
         primaryStage.setTitle("JavaFX Spring App");
         primaryStage.setScene(scene);
         primaryStage.show();
