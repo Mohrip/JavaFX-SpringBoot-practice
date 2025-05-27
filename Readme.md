@@ -11,6 +11,6 @@
      For Gradle project, select your project.
      For Tasks, enter: :frontend:bootRun
      Name it (e.g., "Frontend BootRun").
-     Apply and ok
+     Apply and ok.
 
 ### and make sure to add your JDK to the project in build.gradle 
