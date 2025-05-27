@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 @Component
 public class QuoteController {
@@ -31,9 +33,21 @@ public class QuoteController {
     @FXML
     public void onGetQuote() {
         new Thread(() -> {
-            String newQuote = quoteService.getRandomQuote();
-            Platform.runLater(() -> quote.set(newQuote));
+            String response = quoteService.getRandomQuote();
+            String newQuote = response;
+            try {
+                JSONArray arr = new JSONArray(response);
+                JSONObject obj = arr.getJSONObject(0);
+                String text = obj.getString("q");
+                String author = obj.getString("a");
+                newQuote = "\"" + text + "\"\n— " + author;
+            } catch (Exception e) {
+                // fallback to raw response
+            }
+            String finalQuote = newQuote;
+            Platform.runLater(() -> quote.set(finalQuote));
         }).start();
+
     }
 
     private Runnable showHomeCallback;

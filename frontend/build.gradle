@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.openjfx:javafx-fxml:17'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'io.github.palexdev:materialfx:11.16.1'
+    implementation 'org.json:json:20240303'
 }
 
 javafx {
@@ -32,7 +33,7 @@ javafx {
 }
 
 springBoot {
-    mainClass = 'com.JavaFxAPPS.JavaFxApplication' // Replace with your actual main class
+    mainClass = 'com.JavaFxAPPS.JavaFxApplication'
 }
 
 bootRun {
