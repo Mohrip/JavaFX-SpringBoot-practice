@@ -15,9 +15,6 @@ public class QuoteService {
         String url = "https://zenquotes.io/api/random";
         String response = restTemplate.getForObject(url, String.class);
         return response;
-     }
-
-
-    }
+     }}
 
 

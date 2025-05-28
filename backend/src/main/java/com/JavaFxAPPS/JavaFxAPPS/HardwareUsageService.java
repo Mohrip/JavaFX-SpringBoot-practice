@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+
 @Service
 public class HardwareUsageService {
 
@@ -32,3 +33,6 @@ public class HardwareUsageService {
 
     }
 }
+
+
+// This service provides methods to retrieve usage statistics such as CPU load, memory usage, and swap space.

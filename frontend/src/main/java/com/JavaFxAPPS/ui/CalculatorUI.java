@@ -23,6 +23,7 @@ public class CalculatorUI {
     private double firstNumber = 0;
 
 
+
     private Runnable showHomeCallback;
 
     public CalculatorUI(CalculatorService calculatorService) {
