@@ -1,16 +1,14 @@
 package com.JavaFxAPPS.ui;
 
-//import com.JavaFxAPPS.service.CalculatorService;
 import com.JavaFxAPPS.JavaFxAPPS.CalculatorService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.scene.control.ScrollPane;
 
 
 @Component
@@ -30,21 +28,18 @@ public class CalculatorUI {
         this.calculatorService = calculatorService;
     }
 
-    public VBox createContent() {
+
+    public ScrollPane createContent() {
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
         root.setAlignment(Pos.CENTER);
-
-
 
         display = new MFXTextField();
         display.setEditable(false);
         display.setStyle("-fx-font-size: 24px; -fx-background-radius: 10; -fx-background-color: #f5f5f5;");
 
-
         GridPane buttonGrid = createButtonGrid();
         MFXButton clearButton = createClearButton();
-
 
         MFXButton backButton = new MFXButton("Back");
         backButton.getStyleClass().addAll("mfx-button", "mfx-ripple");
@@ -54,10 +49,16 @@ public class CalculatorUI {
             if (showHomeCallback != null) {
                 showHomeCallback.run();
             }
-            });
+        });
 
         root.getChildren().addAll(display, buttonGrid, clearButton, backButton);
-        return root;
+
+        ScrollPane scrollPane = new ScrollPane(root);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setPannable(true);
+
+        return scrollPane;
     }
 
 
