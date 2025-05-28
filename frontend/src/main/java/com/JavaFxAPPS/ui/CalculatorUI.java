@@ -39,13 +39,17 @@ public class CalculatorUI {
 
         display = new MFXTextField();
         display.setEditable(false);
-        display.setStyle("-fx-font-size: 20px;");
+        display.setStyle("-fx-font-size: 24px; -fx-background-radius: 10; -fx-background-color: #f5f5f5;");
+
 
         GridPane buttonGrid = createButtonGrid();
         MFXButton clearButton = createClearButton();
 
 
         MFXButton backButton = new MFXButton("Back");
+        backButton.getStyleClass().addAll("mfx-button", "mfx-ripple");
+        backButton.setStyle("-fx-background-color: #bdbdbd; -fx-background-radius: 20;");
+
         backButton.setOnAction(e -> {
             if (showHomeCallback != null) {
                 showHomeCallback.run();
@@ -59,8 +63,8 @@ public class CalculatorUI {
 
     private GridPane createButtonGrid() {
         GridPane buttonGrid = new GridPane();
-        buttonGrid.setHgap(5);
-        buttonGrid.setVgap(5);
+        buttonGrid.setHgap(8);
+        buttonGrid.setVgap(8);
 
         String[][] buttonLabels = {
             {"7", "8", "9", "/"},
@@ -72,18 +76,34 @@ public class CalculatorUI {
         for (int i = 0; i < buttonLabels.length; i++) {
             for (int j = 0; j < buttonLabels[i].length; j++) {
                 MFXButton button = new MFXButton(buttonLabels[i][j]);
-                button.setMinSize(50, 50);
-                button.setOnAction(e -> handleButton(button.getText()));
+                button.getStyleClass().addAll("mfx-button", "mfx-ripple");
+                button.setMinSize(60, 60);
+                button.setStyle(
+                        "-fx-font-size: 18px;" +
+                                "-fx-background-radius: 30;" +
+                                (isOperator(buttonLabels[i][j]) ?
+                                        "-fx-background-color: #7c4dff; -fx-text-fill: white;" :
+                                        "-fx-background-color: #e0e0e0; -fx-text-fill: #333;")
+                );
+
+                        button.setOnAction(e -> handleButton(button.getText()));
                 buttonGrid.add(button, j, i);
             }
         }
         return buttonGrid;
     }
+    private boolean isOperator(String value) {
+        return value.equals("+") || value.equals("-") || value.equals("*") || value.equals("/") || value.equals("=");
+    }
 
-    private MFXButton createClearButton() {
+        private MFXButton createClearButton() {
         MFXButton clearButton = new MFXButton("C");
-        clearButton.setMinSize(215, 50);
-        clearButton.setOnAction(e -> clear());
+            clearButton.getStyleClass().addAll("mfx-button", "mfx-ripple");
+
+            clearButton.setMinSize(260, 50);
+            clearButton.setStyle("-fx-background-color: #ff5252; -fx-text-fill: white; -fx-background-radius: 25;");
+
+            clearButton.setOnAction(e -> clear());
         return clearButton;
     }
 
