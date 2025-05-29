@@ -19,7 +19,7 @@ public class HardwareUsageUI extends VBox {
 
     private Runnable showHomeCallback;
 
-
+//
     public HardwareUsageUI(HardwareUsageService hardwareUsageService) {
         this.hardwareUsageService = hardwareUsageService;
         setSpacing(10);
