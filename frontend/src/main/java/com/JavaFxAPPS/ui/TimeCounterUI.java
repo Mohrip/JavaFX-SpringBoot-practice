@@ -26,7 +26,6 @@ public class TimeCounterUI extends VBox {
 
         Label title = new Label("Countdown Timer");
         title.getStyleClass().add("title-label");
-
         countdownLabel.getStyleClass().add("countdown-label");
 
         TextField[] fields = new TextField[8];
