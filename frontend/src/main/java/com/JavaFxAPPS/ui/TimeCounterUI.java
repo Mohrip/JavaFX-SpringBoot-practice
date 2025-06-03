@@ -81,7 +81,8 @@ public class TimeCounterUI extends VBox {
 
         backBtn.setOnAction(e -> {
             if (showHomeCallback != null) showHomeCallback.run();
-        });
+        }
+        );
 
         HBox buttonBox = new HBox(15, startBtn, stopBtn, backBtn);
         buttonBox.setAlignment(Pos.CENTER);
