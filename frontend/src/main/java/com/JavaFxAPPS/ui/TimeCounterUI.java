@@ -78,7 +78,6 @@ public class TimeCounterUI extends VBox {
             }
         });
 
-        //Button backBtn = new Button("Back");
 
         backBtn.setOnAction(e -> {
             if (showHomeCallback != null) showHomeCallback.run();
