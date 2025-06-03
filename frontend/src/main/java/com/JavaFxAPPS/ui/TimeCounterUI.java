@@ -69,7 +69,6 @@ public class TimeCounterUI extends VBox {
 
         startBtn.setOnAction(e -> startCountdown(fields));
 
-       // Button stopBtn = new Button("Stop");
 
 
         stopBtn.setOnAction(e -> {
