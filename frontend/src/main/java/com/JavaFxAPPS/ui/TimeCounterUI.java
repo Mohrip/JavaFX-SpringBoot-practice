@@ -83,7 +83,20 @@ public class TimeCounterUI extends VBox {
             if (showHomeCallback != null) showHomeCallback.run();
         }
          );
-        // test
+        // Set button styles
+//        startBtn.getStyleClass().add("start-button");
+//        stopBtn.getStyleClass().add("stop-button");
+//        backBtn.getStyleClass().add("back-button");
+//        startBtn.setMaxWidth(Double.MAX_VALUE);
+//        stopBtn.setMaxWidth(Double.MAX_VALUE);
+//        backBtn.setMaxWidth(Double.MAX_VALUE);
+//        startBtn.setMinWidth(150);
+//        stopBtn.setMinWidth(150);
+//        backBtn.setMinWidth(150);
+//        startBtn.setPrefHeight(50);
+//        stopBtn.setPrefHeight(50);
+//        backBtn.setPrefHeight(50);
+
 
         HBox buttonBox = new HBox(15, startBtn, stopBtn, backBtn);
         buttonBox.setAlignment(Pos.CENTER);
