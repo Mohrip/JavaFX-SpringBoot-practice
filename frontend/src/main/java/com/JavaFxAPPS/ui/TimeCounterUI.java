@@ -83,6 +83,7 @@ public class TimeCounterUI extends VBox {
             if (showHomeCallback != null) showHomeCallback.run();
         }
          );
+        // test
 
         HBox buttonBox = new HBox(15, startBtn, stopBtn, backBtn);
         buttonBox.setAlignment(Pos.CENTER);
@@ -147,6 +148,7 @@ public class TimeCounterUI extends VBox {
         };
         timer.start();
     }
+
 
     private long parseLong(String s) {
         try {
