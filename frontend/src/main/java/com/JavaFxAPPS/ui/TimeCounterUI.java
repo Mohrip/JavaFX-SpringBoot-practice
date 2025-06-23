@@ -9,6 +9,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 
 @Component
 public class TimeCounterUI extends VBox {
@@ -117,10 +119,9 @@ public class TimeCounterUI extends VBox {
         if (css != null) {
             getStylesheets().add(css.toExternalForm());
         }
-
-
         getChildren().addAll(title, grid, buttonBox, countdownLabel);
-       getStylesheets().add(getClass().getResource("/com/JavaFxAPPS/ui/timer-style.css").toExternalForm());    }
+       getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/JavaFxAPPS/ui/timer-style.css")).toExternalForm());    }
+
 
     private void startCountdown(TextField[] fields) {
         long[] units = new long[8];
