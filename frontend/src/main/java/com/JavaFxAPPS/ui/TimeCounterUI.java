@@ -3,10 +3,8 @@ package com.JavaFxAPPS.ui;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -17,7 +15,7 @@ public class TimeCounterUI extends VBox {
 
     private final Label countdownLabel = new Label("Set your timer");
     private AnimationTimer timer;
-    private long remainingMs = 0;
+    public long remainingMs = 0;
     private Runnable showHomeCallback;
 
     public TimeCounterUI() {
