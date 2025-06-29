@@ -83,22 +83,9 @@ public class TimeCounterUI extends VBox {
             if (showHomeCallback != null) showHomeCallback.run();
         }
          );
-        // Set button styles
-//        startBtn.getStyleClass().add("start-button");
-//        stopBtn.getStyleClass().add("stop-button");
-//        backBtn.getStyleClass().add("back-button");
-//        startBtn.setMaxWidth(Double.MAX_VALUE);
-//        stopBtn.setMaxWidth(Double.MAX_VALUE);
-//        backBtn.setMaxWidth(Double.MAX_VALUE);
-//        startBtn.setMinWidth(150);
-//        stopBtn.setMinWidth(150);
-//        backBtn.setMinWidth(150);
-//        startBtn.setPrefHeight(50);
-//        stopBtn.setPrefHeight(50);
-//        backBtn.setPrefHeight(50);
 
 
-        HBox buttonBox = new HBox(15, startBtn, stopBtn, backBtn);
+      HBox buttonBox = new HBox(15, startBtn, stopBtn, backBtn);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setFillHeight(true);
         HBox.setHgrow(startBtn, Priority.ALWAYS);
@@ -160,7 +147,20 @@ public class TimeCounterUI extends VBox {
         };
         timer.start();
     }
+    /*
+    *
+    *
+    * */
 
+//    private int parseInt(String s) {
+//
+//        try{
+//            // Remove all non-digit characters and parse the remaining digits
+//            return Integer.parseInt(s.trim().replaceAll("[^0-9]", ""));
+//        } catch (Exception e) {
+//            return 0;
+//        }
+//    }
 
     private long parseLong(String s) {
         try {
