@@ -150,6 +150,14 @@ public class TimeCounterUI extends VBox {
 //
 //        try {
 //    }
+//    public String getFormattedDuration(){
+//        if (remainingMs <= 0) {
+//            return "No active countdown.";
+//        }
+//        else {
+//            return formatDuration(remainingMs);
+//        }
+//    }
 
     public String getFormattedDuration(String input) {
         if (remainingMs <= 0) {
