@@ -52,7 +52,7 @@ public class TimeCounterUI extends VBox {
             grid.add(box, i % 4, i / 4);
         }
 
-        for (int i =0; i < 8; i++) {
+        for (int i = 0; i < 8; i++) {
             ColumnConstraints cc = new ColumnConstraints();
             cc.setHgrow(Priority.ALWAYS);
             cc.setPercentWidth(25);
@@ -70,7 +70,6 @@ public class TimeCounterUI extends VBox {
         startBtn.setOnAction(e -> startCountdown(fields));
 
 
-
         stopBtn.setOnAction(e -> {
             if (timer != null) {
                 timer.stop();
@@ -81,11 +80,10 @@ public class TimeCounterUI extends VBox {
 
         backBtn.setOnAction(e -> {
             if (showHomeCallback != null) showHomeCallback.run();
-        }
-         );
+        });
 
 
-      HBox buttonBox = new HBox(15, startBtn, stopBtn, backBtn);
+        HBox buttonBox = new HBox(15, startBtn, stopBtn, backBtn);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setFillHeight(true);
         HBox.setHgrow(startBtn, Priority.ALWAYS);
@@ -105,7 +103,8 @@ public class TimeCounterUI extends VBox {
             getStylesheets().add(css.toExternalForm());
         }
         getChildren().addAll(title, grid, buttonBox, countdownLabel);
-       getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/JavaFxAPPS/ui/timer-style.css")).toExternalForm());    }
+        getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/JavaFxAPPS/ui/timer-style.css")).toExternalForm());
+    }
 
 
     private void startCountdown(TextField[] fields) {
@@ -114,15 +113,7 @@ public class TimeCounterUI extends VBox {
             units[i] = parseLong(fields[i].getText());
         }
 
-        remainingMs =
-                units[7] +
-                        units[6] * 1000L +
-                        units[5] * 60_000L +
-                        units[4] * 3_600_000L +
-                        units[3] * 86_400_000L +
-                        units[2] * 604_800_000L +
-                        units[1] * 2_592_000_000L +
-                        units[0] * 31_536_000_000L;
+        remainingMs = units[7] + units[6] * 1000L + units[5] * 60_000L + units[4] * 3_600_000L + units[3] * 86_400_000L + units[2] * 604_800_000L + units[1] * 2_592_000_000L + units[0] * 31_536_000_000L;
 
         if (remainingMs <= 0) {
             countdownLabel.setText("Please enter a positive duration.");
@@ -147,10 +138,7 @@ public class TimeCounterUI extends VBox {
         };
         timer.start();
     }
-    /*
-    *
-    *
-    * */
+
 
 //    private int parseInt(String s) {
 //
@@ -159,30 +147,50 @@ public class TimeCounterUI extends VBox {
 //            return Integer.parseInt(s.trim().replaceAll("[^0-9]", ""));
 //        } catch (Exception e) {
 //            return 0;
-//        }
+//
+//        try {
 //    }
 
+    public String getFormattedDuration(String input) {
+        if (remainingMs <= 0) {
+            return "No active countdown." + input;
+        }
+        return formatDuration(remainingMs);
+    }
+
     private long parseLong(String s) {
+        if (s == null || s.trim().isEmpty()) {
+            return 0;
+        } else if (s.trim().equalsIgnoreCase("0")) {
+            return 1;
+        }
+        else if (s.trim().equalsIgnoreCase("0ms")) {
+            return 2;
+        }
         try {
             return Long.parseLong(s.trim());
-        } catch (Exception e) {
-            return 0;
+        }
+        catch (Exception e) {
+            return 3;
         }
     }
 
     private String formatDuration(long ms) {
-        long years = ms / 31_536_000_000L; ms %= 31_536_000_000L;
-        long months = ms / 2_592_000_000L; ms %= 2_592_000_000L;
-        long weeks = ms / 604_800_000L; ms %= 604_800_000L;
-        long days = ms / 86_400_000L; ms %= 86_400_000L;
-        long hours = ms / 3_600_000L; ms %= 3_600_000L;
-        long minutes = ms / 60_000L; ms %= 60_000L;
+        long years = ms / 31_536_000_000L;
+        ms %= 31_536_000_000L;
+        long months = ms / 2_592_000_000L;
+        ms %= 2_592_000_000L;
+        long weeks = ms / 604_800_000L;
+        ms %= 604_800_000L;
+        long days = ms / 86_400_000L;
+        ms %= 86_400_000L;
+        long hours = ms / 3_600_000L;
+        ms %= 3_600_000L;
+        long minutes = ms / 60_000L;
+        ms %= 60_000L;
         long seconds = ms / 1000L;
 
-        return String.format(
-                "%02dy : %02dm : %02dw : %02dd : %02dh : %02dm : %02ds",
-                years, months, weeks, days, hours, minutes, seconds
-        );
+        return String.format("%02dy : %02dm : %02dw : %02dd : %02dh : %02dm : %02ds", years, months, weeks, days, hours, minutes, seconds);
     }
 
     public void setShowHomeCallback(Runnable showHomeCallback) {
